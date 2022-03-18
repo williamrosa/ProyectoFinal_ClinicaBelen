@@ -172,15 +172,21 @@
     <Compile Include="Controllers\CorreosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicosController.cs" />
     <Compile Include="Controllers\PacientesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoriaMedico.cs" />
     <Compile Include="Models\Correo.cs" />
+    <Compile Include="Models\EstadoPago.cs" />
+    <Compile Include="Models\EstadoReservacion.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Medico.cs" />
     <Compile Include="Models\Paciente.cs" />
+    <Compile Include="Models\Reservacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -246,6 +252,11 @@
     <Content Include="Views\Pacientes\Edit.cshtml" />
     <Content Include="Views\Pacientes\Index.cshtml" />
     <Content Include="Views\Correos\EnviarCorreo.cshtml" />
+    <Content Include="Views\Medicos\Create.cshtml" />
+    <Content Include="Views\Medicos\Delete.cshtml" />
+    <Content Include="Views\Medicos\Details.cshtml" />
+    <Content Include="Views\Medicos\Edit.cshtml" />
+    <Content Include="Views\Medicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,5 +12,9 @@ namespace ProyectoFinal_ClinicaBelen.Context
         public DbSet<Paciente> Pacientes { get; set; }
 
         public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Correo> Correos { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Medico> Medicos { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.CategoriaMedico> CategoriaMedicoes { get; set; }
     }
 }
