@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using ProyectoFinal_ClinicaBelen.Models;
+
+namespace ProyectoFinal_ClinicaBelen.Context
+{
+    public class ClinicaContext:DbContext 
+    {
+        public DbSet<Paciente> Pacientes { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Correo> Correos { get; set; }
+    }
+}
