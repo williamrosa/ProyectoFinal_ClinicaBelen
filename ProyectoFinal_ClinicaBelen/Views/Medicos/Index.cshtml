@@ -6,9 +6,21 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row">
+    <div class="col-sm-10"></div>
+    <p>
+        @Html.ActionLink("Create New", "Create", new { }, new {@class="btn btn-primary" })
+    </p>
+</div>
+@using (Html.BeginForm())
+{
+    <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+    <div class="form-inline">
+        <input type="text" name="txtBuscar" class="form-control" placeholder="Ingrese una palabra" />
+        <input class="btn btn-primary" type="submit" id="btnEnviar" value="Buscar" />
+    </div>
+    <br />
+}
 <table class="table">
     <tr>
         <th>
@@ -44,44 +56,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoriaMedico.NombreCategoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Medico }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Medico }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Medico })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoriaMedico.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_Creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id_Medico }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id_Medico }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id_Medico })
+            </td>
+        </tr>
+    }
 
 </table>

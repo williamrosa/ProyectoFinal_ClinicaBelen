@@ -22,6 +22,16 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             return View(medicos.ToList());
         }
 
+        //Filtrado de medicos
+        [HttpPost]
+        public ActionResult Index(string txtBuscar)
+        {
+            var buscarMedicos = from s in db.Medicos.Include(m => m.CategoriaMedico)
+                                where s.Nombres.Contains(txtBuscar) || s.Apellidos.Contains(txtBuscar)
+                                select s;
+            return View(buscarMedicos.ToList());
+        }
+
         // GET: Medicos/Details/5
         public ActionResult Details(int? id)
         {
