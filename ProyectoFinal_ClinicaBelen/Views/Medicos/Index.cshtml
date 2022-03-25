@@ -2,13 +2,16 @@
 
 @{ ViewBag.Title = "Lista de médicos"; }
 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/datatables.min.css" />
+
 <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
 <div class="box box-primary" style="margin-top:20px;">
     <div class="box-header">
         <h4 class="box-title">Listado de Médicos</h4>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-success" name="btnCrear" id="btnCrear" onclick="Crear()">
-                <i class="fas fa-plus-square"></i> Crear Nuevo
+                <i class="fa fa-plus-square"></i> Crear Nuevo
             </button>
         </div>
     </div>
@@ -32,15 +35,11 @@
                 </tr>
             </thead>
         </table>
-        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet" />
     </div>
 </div>
 <h4>@ViewBag.ex</h4>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
 
 <script>
     var Popup, dataTable;

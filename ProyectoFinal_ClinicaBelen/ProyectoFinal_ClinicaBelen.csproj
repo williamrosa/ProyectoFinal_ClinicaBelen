@@ -168,6 +168,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ClinicaContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriaMedicoController.cs" />
     <Compile Include="Controllers\CorreosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -196,6 +197,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,6 +271,11 @@
     <Content Include="Views\Medicos\Details.cshtml" />
     <Content Include="Views\Medicos\Edit.cshtml" />
     <Content Include="Views\Medicos\Index.cshtml" />
+    <Content Include="Views\CategoriaMedico\Create.cshtml" />
+    <Content Include="Views\CategoriaMedico\Delete.cshtml" />
+    <Content Include="Views\CategoriaMedico\Details.cshtml" />
+    <Content Include="Views\CategoriaMedico\Edit.cshtml" />
+    <Content Include="Views\CategoriaMedico\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

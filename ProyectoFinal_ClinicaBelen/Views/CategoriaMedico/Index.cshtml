@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ProyectoFinal_ClinicaBelen.Models.CategoriaMedico>
+
+@{
+    ViewBag.Title = "Lista de Categoria de Medicos";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/datatables.min.css" />
+
+<div class="box box-primary" style="margin-top:20px;">
+    <div class="box-header">
+        <h4 class="box-title">Listado de Categorias</h4>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-success" name="btnCrear" id="btnCrear" onclick="Crear()">
+                <i class="fa fa-plus-square"></i> Crear Nuevo
+            </button>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div class="table-responsive">
+            <table id="CategoriaMedicoTable" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>N#</th>
+                        <th>Nombre de Categoria</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<h4>@ViewBag.ex</h4>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+
+<script>
+    var Popup, dataTable;
+    $(document).ready(function () {
+        $.noConflict();
+        var table = $('MedicoTable').DataTable();
+        table = $("#CategoriaMedicoTable").DataTable({
+            "ajax": {
+                "url": "/CategoriaMedico/GetData",
+                "type": "GET",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "Id_Categoria" },
+                { "data": "NombreCategoria" },
+                {
+                    "data": "Id_Categoria", "render": function (data) {
+                    return "<a class='btn btn-default btn-sm' href='@Url.Action("Edit", "CategoriaMedico")/" + data + "'><i class='fa fa-pencil'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                },
+                {
+                    "data": "Id_Categoria", "render": function (data) {
+                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' href='@Url.Action("Delete", "CategoriaMedico")/" + data + "'><i class='fa fa-trash'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                    }
+            ],
+            "language": {
+                "url": "@Url.Content("~/Scripts/datatable.es-ES.json")"
+                 }
+        });
+    });
+</script>
+
+<script>
+    function Crear() {
+        document.getElementById("btnCrear")
+        location.href = "/CategoriaMedico/Create";
+    }
+</script>
