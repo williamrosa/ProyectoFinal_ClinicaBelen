@@ -18,6 +18,22 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // GET: CategoriaMedico
         public ActionResult Index()
         {
+            if (TempData["Accion"] != null)
+            {
+                var accion = Convert.ToString(TempData["Accion"]);
+                if (accion == "Insertado")
+                {
+                    ViewBag.Accion = "Insertado";
+                }
+                else if (accion == "Editado")
+                {
+                    ViewBag.Accion = "Editado";
+                }
+                else if (accion == "Eliminado")
+                {
+                    ViewBag.Accion = "Eliminado";
+                }
+            }
             return View(db.CategoriaMedicoes.ToList());
         }
 
@@ -72,6 +88,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             {
                 db.CategoriaMedicoes.Add(categoriaMedico);
                 db.SaveChanges();
+                TempData["Accion"] = "Insertado";
                 return RedirectToAction("Index");
             }
 
@@ -104,6 +121,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             {
                 db.Entry(categoriaMedico).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Accion"] = "Editado";
                 return RedirectToAction("Index");
             }
             return View(categoriaMedico);
@@ -135,6 +153,14 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EliminarCategoria(int id)
+        {
+            CategoriaMedico categoriaMedico = db.CategoriaMedicoes.Find(id);
+            db.CategoriaMedicoes.Remove(categoriaMedico);
+            TempData["Accion"] = "Eliminado";
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

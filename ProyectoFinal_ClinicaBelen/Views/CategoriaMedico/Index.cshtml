@@ -7,6 +7,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/datatables.min.css" />
 
+<input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
 <div class="box box-primary" style="margin-top:20px;">
     <div class="box-header">
         <h4 class="box-title">Listado de Categorias</h4>
@@ -60,7 +61,7 @@
                 },
                 {
                     "data": "Id_Categoria", "render": function (data) {
-                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' href='@Url.Action("Delete", "CategoriaMedico")/" + data + "'><i class='fa fa-trash'></i></a>";
+                        return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")> <i class='fa fa-trash'></i></a > ";
                     },
                         "orderable": false,
                         "searchable":false,
@@ -73,10 +74,43 @@
         });
     });
 </script>
-
 <script>
+    $(document).ready(function () {
+        if ($("#txtOcultar").val() == "Insertado") {
+            swal("Registro Guardado!", "Datos  guardados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Editado") {
+            swal("Registro Editado!", "Datos editados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Eliminado") {
+            swal("Registro Eliminado!", "Datos  Eliminados correctamente!", "error");
+        }
+    });
+
     function Crear() {
         document.getElementById("btnCrear")
         location.href = "/CategoriaMedico/Create";
     }
+
+    function Delete(id) {
+        var url;
+        swal({
+            title: "Estas seguro?",
+            text: "Si lo eliminas, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    url = '@Url.Action("EliminarCategoria", "CategoriaMedico")/' + id,
+                    window.location.href = url;
+                    dataTable.ajax.reload();
+                } else {
+                    swal("Cancelado!");
+                }
+            });
+    }
+
+
 </script>
