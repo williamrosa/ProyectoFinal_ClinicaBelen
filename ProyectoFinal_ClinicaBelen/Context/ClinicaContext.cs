@@ -16,5 +16,11 @@ namespace ProyectoFinal_ClinicaBelen.Context
         public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Medico> Medicos { get; set; }
 
         public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.CategoriaMedico> CategoriaMedicoes { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.EstadoPago> EstadoPagos { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.EstadoReservacion> EstadoReservaciones { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Reservacion> Reservaciones { get; set; }
     }
 }

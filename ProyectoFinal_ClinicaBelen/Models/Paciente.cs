@@ -57,6 +57,6 @@ namespace ProyectoFinal_ClinicaBelen.Models
         [Display(Name = "Fecha")]
         public DateTime Fecha_Creacion { get; set; }
 
-        //public ICollection<Reservacion> Reservaciones { get; set; }
+        public ICollection<Reservacion> Reservaciones { get; set; }
     }
 }

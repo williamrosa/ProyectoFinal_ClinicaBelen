@@ -18,19 +18,48 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // GET: Medicos
         public ActionResult Index()
         {
+            if (TempData["Accion"] != null)
+            {
+                var accion = Convert.ToString(TempData["Accion"]);
+                if (accion == "Insertado")
+                {
+                    ViewBag.Accion = "Insertado";
+                }
+                else if (accion == "Editado")
+                {
+                    ViewBag.Accion = "Editado";
+                }
+                else if (accion == "Eliminado")
+                {
+                    ViewBag.Accion = "Eliminado";
+                }
+            }
             var medicos = db.Medicos.Include(m => m.CategoriaMedico);
             return View(medicos.ToList());
         }
 
-        //Filtrado de medicos
-        [HttpPost]
-        public ActionResult Index(string txtBuscar)
+        [HttpGet]
+        public ActionResult GetData()
         {
-            var buscarMedicos = from s in db.Medicos.Include(m => m.CategoriaMedico)
-                                where s.Nombres.Contains(txtBuscar) || s.Apellidos.Contains(txtBuscar)
-                                select s;
-            return View(buscarMedicos.ToList());
+            using (ClinicaContext db = new ClinicaContext())
+            {
+                try
+                {
+                    var listaMedicos = db.Medicos.OrderBy(a => a.Nombres)
+                            .Select(m => new { m.Nombres, m.Apellidos,  m.Genero, m.Direccion, m.Email, m.Numero_documento, m.Id_Medico })
+                            .ToList();
+                    
+                    return Json(new { data = listaMedicos }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+                
+            }
         }
+        
 
         // GET: Medicos/Details/5
         public ActionResult Details(int? id)
@@ -59,12 +88,13 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Medico,Nombres,Apellidos,Genero,FechaNacimiento,Email,Direccion,Movil,Fecha_Creacion,IsActive,Id_Categoria")] Medico medico)
+        public ActionResult Create([Bind(Include = "Id_Medico,Nombres,Apellidos,Genero,FechaNacimiento,Email,Direccion,Movil,Fecha_Creacion,Numero_documento,IsActive,Id_Categoria")] Medico medico)
         {
             if (ModelState.IsValid)
             {
                 db.Medicos.Add(medico);
                 db.SaveChanges();
+                TempData["Accion"] = "Insertado";
                 return RedirectToAction("Index");
             }
 
@@ -85,6 +115,10 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                 return HttpNotFound();
             }
             ViewBag.Id_Categoria = new SelectList(db.CategoriaMedicoes, "Id_Categoria", "NombreCategoria", medico.Id_Categoria);
+            ViewBag.FechaNacimiento = string.Format("{0:dd/MM/yyyy}", medico.FechaNacimiento);
+            ViewBag.Fecha_Creacion = string.Format("{0:dd/MM/yyyy}", medico.Fecha_Creacion);
+            ViewBag.Movil = medico.Movil;
+            ViewBag.Dui = medico.Numero_documento;
             return View(medico);
         }
 
@@ -93,12 +127,13 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Medico,Nombres,Apellidos,Genero,FechaNacimiento,Email,Direccion,Movil,Fecha_Creacion,IsActive,Id_Categoria")] Medico medico)
+        public ActionResult Edit([Bind(Include = "Id_Medico,Nombres,Apellidos,Genero,FechaNacimiento,Email,Direccion,Movil,Fecha_Creacion,Numero_documento,IsActive,Id_Categoria")] Medico medico)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(medico).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Accion"] = "Editado";
                 return RedirectToAction("Index");
             }
             ViewBag.Id_Categoria = new SelectList(db.CategoriaMedicoes, "Id_Categoria", "NombreCategoria", medico.Id_Categoria);
@@ -128,6 +163,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             Medico medico = db.Medicos.Find(id);
             db.Medicos.Remove(medico);
             db.SaveChanges();
+            TempData["Accion"] = "Eliminado";
             return RedirectToAction("Index");
         }
 

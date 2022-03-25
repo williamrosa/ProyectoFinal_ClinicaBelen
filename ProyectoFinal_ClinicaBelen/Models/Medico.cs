@@ -19,14 +19,12 @@ namespace ProyectoFinal_ClinicaBelen.Models
         [StringLength(30, ErrorMessage = "El campo {0} necesita entre {2} y {1} caracteres", MinimumLength = 4)]
         public string Apellidos { get; set; }
 
-        public string Nombre_Completo { get { return string.Format("{0} {1}", Nombres, Apellidos); } }
-
         [Display(Name = "Género")]
         [StringLength(1, ErrorMessage = "El campo {0} necesita un solo caracter(M/F)", MinimumLength = 1)]
         public string Genero { get; set; }
 
         [Required(ErrorMessage = "El campo {0}, no puede estar vacio")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime FechaNacimiento { get; set; }
 
@@ -44,9 +42,13 @@ namespace ProyectoFinal_ClinicaBelen.Models
         public string Movil { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha")]
         public DateTime Fecha_Creacion { get; set; }
+
+        [Required(ErrorMessage = "El campo {0}, no puede estar vacio")]
+        [Display(Name = "Numero documento")]
+        public string Numero_documento { get; set; }
 
         [Display(Name = "Activo")]
         public bool IsActive { get; set; }
