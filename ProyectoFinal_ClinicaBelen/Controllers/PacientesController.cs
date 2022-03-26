@@ -135,5 +135,27 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpGet]
+        public ActionResult GetData()
+        {
+            using (ClinicaContext db = new ClinicaContext())
+            {
+                try
+                {
+                    var listaMedicos = db.Pacientes.OrderBy(a => a.Nombres)
+                            .Select(m => new { m.Nombres, m.Apellidos, m.Genero, m.Direccion, m.Email, m.Numero_documento, m.Id_Paciente })
+                            .ToList();
+
+                    return Json(new { data = listaMedicos }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+
+            }
+        }
     }
 }
