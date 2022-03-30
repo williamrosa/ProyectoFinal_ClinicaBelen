@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaMedicoController.cs" />
     <Compile Include="Controllers\CorreosController.cs" />
+    <Compile Include="Controllers\EstadoPagoesController.cs" />
     <Compile Include="Controllers\EstadoReservacionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -282,6 +283,11 @@
     <Content Include="Views\EstadoReservaciones\Details.cshtml" />
     <Content Include="Views\EstadoReservaciones\Edit.cshtml" />
     <Content Include="Views\EstadoReservaciones\Index.cshtml" />
+    <Content Include="Views\EstadoPagoes\Create.cshtml" />
+    <Content Include="Views\EstadoPagoes\Delete.cshtml" />
+    <Content Include="Views\EstadoPagoes\Details.cshtml" />
+    <Content Include="Views\EstadoPagoes\Edit.cshtml" />
+    <Content Include="Views\EstadoPagoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
