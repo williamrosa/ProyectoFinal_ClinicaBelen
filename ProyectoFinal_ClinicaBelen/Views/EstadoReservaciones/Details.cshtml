@@ -1,0 +1,26 @@
+﻿@model ProyectoFinal_ClinicaBelen.Models.EstadoReservacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EstadoReservacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoDeCita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDeCita)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_EstadoReservacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
