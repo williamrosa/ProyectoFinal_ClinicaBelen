@@ -18,7 +18,19 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // GET: EstadoPagoes
         public ActionResult Index()
         {
-
+            var accion = Convert.ToString(TempData["Accion"]);
+            if (accion == "Insertado")
+            {
+                ViewBag.Accion = "Insertado";
+            }
+            else if (accion == "Editado")
+            {
+                ViewBag.Accion = "Editado";
+            }
+            else if (accion == "Eliminado")
+            {
+                ViewBag.Accion = "Eliminado";
+            }
             return View(db.EstadoPagos.ToList());
         }
 
@@ -53,6 +65,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             if (ModelState.IsValid)
             {
                 db.EstadoPagos.Add(estadoPago);
+                TempData["Accion"] = "Insertado";
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -85,6 +98,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(estadoPago).State = EntityState.Modified;
+                TempData["Accion"] = "Editado";
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -147,6 +161,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult EliminarEstadoPago(int id)
         {
             EstadoPago estadoPagoe = db.EstadoPagos.Find(id);

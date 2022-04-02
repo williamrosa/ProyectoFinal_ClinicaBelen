@@ -153,6 +153,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public ActionResult EliminarCategoria(int id)
         {
             CategoriaMedico categoriaMedico = db.CategoriaMedicoes.Find(id);

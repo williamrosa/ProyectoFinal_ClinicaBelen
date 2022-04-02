@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoFinal_ClinicaBelen.Models.EstadoPago>
+﻿    @model IEnumerable<ProyectoFinal_ClinicaBelen.Models.EstadoPago>
 
 @{
     ViewBag.Title = "Estado del Pagos";
@@ -24,7 +24,7 @@
         {
             <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
         }
-        <table id="MedicoTable" class="table table-striped table-bordered responsive" style="width:100%">
+        <table id="tableIndex" class="table table-striped table-bordered responsive" style="width:100%">
             <thead>
                 <tr>
                     <th>N#</th>
@@ -44,8 +44,8 @@
     var Popup, dataTable;
     $(document).ready(function () {
         $.noConflict();
-        var table = $('MedicoTable').DataTable();
-        table = $("#MedicoTable").DataTable({
+        var table = $('tableIndex').DataTable();
+        table = $("#tableIndex").DataTable({
             "ajax": {
                 "url": "/EstadoPagoes/GetData",
                 "type": "GET",
@@ -64,7 +64,7 @@
                 },
                 {
                     "data": "Id_TipoDePago", "render": function (data) {
-                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' href='@Url.Action("Delete", "EstadoPagoes")/" + data + "'><i class='fa fa-trash'></i></a>";
+                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px'onclick=Delete("+data+")> <i class='fa fa-trash'></i></a>";
                     },
                         "orderable": false,
                         "searchable":false,
@@ -110,6 +110,26 @@
             .then((willDelete) => {
                 if (willDelete) {
                     url = '@Url.Action("EliminarEstadoPago", "EstadoPagoes")/' + id,
+                    window.location.href = url;
+                    dataTable.ajax.reload();
+                } else {
+                    swal("Cancelado!");
+                }
+            });
+    }
+
+    function Delete(id) {
+        var url;
+        swal({
+            title: "Estas seguro?",
+            text: "Si lo eliminas, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    url = '@Url.Action("EliminarReservacion", "EstadoReservaciones")/' + id,
                     window.location.href = url;
                     dataTable.ajax.reload();
                 } else {
