@@ -1,33 +1,121 @@
 ﻿@model IEnumerable<ProyectoFinal_ClinicaBelen.Models.EstadoPago>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Estado del Pagos";
 }
 
-<h2>Index</h2>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/datatables.min.css" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoDePago)
-        </th>
-        <th></th>
-    </tr>
+<input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstadoDePago)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_TipoDePago }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_TipoDePago }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_TipoDePago })
-        </td>
-    </tr>
-}
+<div class="box box-primary" style="margin-top:20px;">
+    <div class="box-header">
+        <h4 class="box-title">Estado del Pago</h4>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-success" name="btnCrear" id="btnCrear" onclick="Crear()">
+                <i class="fa fa-plus-square"></i> Crear Nuevo
+            </button>
+        </div>
+    </div>
 
-</table>
+    <div class="box-body">
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+        }
+        <table id="MedicoTable" class="table table-striped table-bordered responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>N#</th>
+                    <th>Estado del Pago</th>                    
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<h4>@ViewBag.ex</h4>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+
+<script>
+    var Popup, dataTable;
+    $(document).ready(function () {
+        $.noConflict();
+        var table = $('MedicoTable').DataTable();
+        table = $("#MedicoTable").DataTable({
+            "ajax": {
+                "url": "/EstadoPagoes/GetData",
+                "type": "GET",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "Id_TipoDePago" },
+                { "data": "EstadoDePago" },
+                {
+                    "data": "Id_TipoDePago", "render": function (data) {
+                    return "<a class='btn btn-default btn-sm' href='@Url.Action("Edit", "EstadoPagoes")/" + data + "'><i class='fa fa-pencil'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                },
+                {
+                    "data": "Id_TipoDePago", "render": function (data) {
+                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' href='@Url.Action("Delete", "EstadoPagoes")/" + data + "'><i class='fa fa-trash'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                    }
+            ],
+            "language": {
+                "url": "@Url.Content("~/Scripts/datatable.es-ES.json")"
+                 }
+        });
+    });
+
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        if ($("#txtOcultar").val() == "Insertado") {
+            swal("Registro Guardado!", "Datos  guardados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Editado") {
+            swal("Registro Editado!", "Datos editados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Eliminado") {
+            swal("Registro Eliminado!", "Datos  Eliminados correctamente!", "success");
+        }
+    });</script>
+<script>
+    function Crear() {
+        document.getElementById("btnCrear")
+        location.href = "/EstadoPagoes/Create";
+    }
+
+    function Delete(id) {
+        var url;
+        swal({
+            title: "Estas seguro?",
+            text: "Si lo eliminas, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    url = '@Url.Action("EliminarEstadoPago", "EstadoPagoes")/' + id,
+                    window.location.href = url;
+                    dataTable.ajax.reload();
+                } else {
+                    swal("Cancelado!");
+                }
+            });
+    }
+</script>
+

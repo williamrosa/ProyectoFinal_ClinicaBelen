@@ -18,6 +18,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // GET: EstadoPagoes
         public ActionResult Index()
         {
+
             return View(db.EstadoPagos.ToList());
         }
 
@@ -123,6 +124,36 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public ActionResult GetData()
+        {
+            using (ClinicaContext db = new ClinicaContext())
+            {
+                try
+                {
+                    var listaEstadoPagos = db.EstadoPagos.OrderBy(a => a.EstadoDePago)
+                            .Select(m => new { m.Id_TipoDePago,m.EstadoDePago })
+                            .ToList();
+
+                    return Json(new { data = listaEstadoPagos }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+
+            }
+        }
+
+        public ActionResult EliminarEstadoPago(int id)
+        {
+            EstadoPago estadoPagoe = db.EstadoPagos.Find(id);
+            db.EstadoPagos.Remove(estadoPagoe);
+            db.SaveChanges();
+            TempData["Accion"] = "Eliminado";
+            return RedirectToAction("Index");
         }
     }
 }
