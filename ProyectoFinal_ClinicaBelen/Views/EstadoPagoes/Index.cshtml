@@ -64,7 +64,7 @@
                 },
                 {
                     "data": "Id_TipoDePago", "render": function (data) {
-                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px'onclick=Delete("+data+")> <i class='fa fa-trash'></i></a>";
+                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")> <i class='fa fa-trash'></i></a>";
                     },
                         "orderable": false,
                         "searchable":false,
@@ -118,24 +118,5 @@
             });
     }
 
-    function Delete(id) {
-        var url;
-        swal({
-            title: "Estas seguro?",
-            text: "Si lo eliminas, no podrás recuperarlo!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    url = '@Url.Action("EliminarReservacion", "EstadoReservaciones")/' + id,
-                    window.location.href = url;
-                    dataTable.ajax.reload();
-                } else {
-                    swal("Cancelado!");
-                }
-            });
-    }
 </script>
 

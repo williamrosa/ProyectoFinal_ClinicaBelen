@@ -161,7 +161,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             }
         }
 
-        [HttpPost]
+        
         public ActionResult EliminarEstadoPago(int id)
         {
             EstadoPago estadoPagoe = db.EstadoPagos.Find(id);

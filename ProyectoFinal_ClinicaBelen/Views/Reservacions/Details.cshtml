@@ -1,0 +1,122 @@
+﻿@model ProyectoFinal_ClinicaBelen.Models.Reservacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoPago.EstadoDePago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPago.EstadoDePago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoReservacion.EstadoDeCita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoReservacion.EstadoDeCita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medico.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo_reservacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo_reservacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nota_reservacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota_reservacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_creado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_creado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_cita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_cita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora_cita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora_cita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sintomas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sintomas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicamentos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicamentos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Reservacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
