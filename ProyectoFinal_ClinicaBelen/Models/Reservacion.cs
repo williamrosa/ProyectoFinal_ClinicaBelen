@@ -15,7 +15,6 @@ namespace ProyectoFinal_ClinicaBelen.Models
         [Display(Name = "Titulo")]
         public string Titulo_reservacion { get; set; }
 
-        [Required(ErrorMessage = "Debes llenar el campo {0}")]
         [Display(Name = "Nota")]
         [DataType(DataType.MultilineText)]
         public string Nota_reservacion { get; set; }
@@ -25,24 +24,17 @@ namespace ProyectoFinal_ClinicaBelen.Models
         public string Direccion { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de creacion")]
         public DateTime Fecha_creado { get; set; }
         [DataType(DataType.Date)]
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         [Display(Name = "Fecha de la cita")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_cita { get; set; }
 
-        [Required(ErrorMessage = "El campo {0}, no puede estar vacio")]
-        [Display(Name = "Hora de la cita")]
-        [DataType(DataType.Time)]
-        public DateTime Hora_cita { get; set; }
-
-        [Required(ErrorMessage = "Debes llenar el campo {0}")]
         public string Sintomas { get; set; }
 
-        [Required(ErrorMessage = "Debes llenar el campo {0}")]
         [StringLength(80, ErrorMessage = "El campo {0} debe constar entre {2} y {1} caracteres", MinimumLength = 3)]
         public string Medicamentos { get; set; }
 

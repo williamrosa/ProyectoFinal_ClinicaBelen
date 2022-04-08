@@ -47,7 +47,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                 try
                 {
                     var listaReservaciones = db.Reservaciones.OrderBy(r => r.Titulo_reservacion)
-                            .Select(r => new { r.Titulo_reservacion, r.Medico, r.Paciente, r.Medicamentos, r.Precio, r.Fecha_cita, r.Hora_cita })
+                            .Select(r => new { r.Titulo_reservacion, Nombre_Completo = r.Medico.Nombres + " " + r.Medico.Apellidos, Nombre_Completo_Paciente =  r.Paciente.Nombres + " " + r.Paciente.Apellidos, r.Medicamentos, r.Precio, r.Fecha_cita, r.Fecha_creado, r.Id_Reservacion })
                             .ToList();
 
                     return Json(new { data = listaReservaciones }, JsonRequestBehavior.AllowGet);
@@ -60,7 +60,6 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
 
             }
         }
-
         // GET: Reservacions/Details/5
         public ActionResult Details(int? id)
         {
@@ -91,7 +90,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Reservacion,Titulo_reservacion,Nota_reservacion,Direccion,Fecha_creado,Fecha_cita,Hora_cita,Sintomas,Medicamentos,Precio,Id_Medico,Id_Paciente,Id_EstadoReservacion,Id_TipoDePago")] Reservacion reservacion)
+        public ActionResult Create([Bind(Include = "Id_Reservacion,Titulo_reservacion,Nota_reservacion,Direccion,Fecha_creado,Fecha_cita,Sintomas,Medicamentos,Precio,Id_Medico,Id_Paciente,Id_EstadoReservacion,Id_TipoDePago")] Reservacion reservacion)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +104,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             ViewBag.Id_EstadoReservacion = new SelectList(db.EstadoReservaciones, "Id_EstadoReservacion", "EstadoDeCita", reservacion.Id_EstadoReservacion);
             ViewBag.Id_Medico = new SelectList(db.Medicos, "Id_Medico", "Nombres", reservacion.Id_Medico);
             ViewBag.Id_Paciente = new SelectList(db.Pacientes, "Id_Paciente", "Nombres", reservacion.Id_Paciente);
+            
             return View(reservacion);
         }
 
@@ -124,6 +124,8 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             ViewBag.Id_EstadoReservacion = new SelectList(db.EstadoReservaciones, "Id_EstadoReservacion", "EstadoDeCita", reservacion.Id_EstadoReservacion);
             ViewBag.Id_Medico = new SelectList(db.Medicos, "Id_Medico", "Nombres", reservacion.Id_Medico);
             ViewBag.Id_Paciente = new SelectList(db.Pacientes, "Id_Paciente", "Nombres", reservacion.Id_Paciente);
+            ViewBag.FechaCita =reservacion.Fecha_cita;
+            ViewBag.FechaCreado = string.Format("{0:dd/MM/yyyy}", reservacion.Fecha_creado);
             return View(reservacion);
         }
 
@@ -132,7 +134,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Reservacion,Titulo_reservacion,Nota_reservacion,Direccion,Fecha_creado,Fecha_cita,Hora_cita,Sintomas,Medicamentos,Precio,Id_Medico,Id_Paciente,Id_EstadoReservacion,Id_TipoDePago")] Reservacion reservacion)
+        public ActionResult Edit([Bind(Include = "Id_Reservacion,Titulo_reservacion,Nota_reservacion,Direccion,Fecha_creado,Fecha_cita,Sintomas,Medicamentos,Precio,Id_Medico,Id_Paciente,Id_EstadoReservacion,Id_TipoDePago")] Reservacion reservacion)
         {
             if (ModelState.IsValid)
             {
@@ -145,9 +147,18 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             ViewBag.Id_EstadoReservacion = new SelectList(db.EstadoReservaciones, "Id_EstadoReservacion", "EstadoDeCita", reservacion.Id_EstadoReservacion);
             ViewBag.Id_Medico = new SelectList(db.Medicos, "Id_Medico", "Nombres", reservacion.Id_Medico);
             ViewBag.Id_Paciente = new SelectList(db.Pacientes, "Id_Paciente", "Nombres", reservacion.Id_Paciente);
+            
             return View(reservacion);
         }
 
+        public ActionResult EliminarReservacion(int id)
+        {
+            Reservacion reserv = db.Reservaciones.Find(id);
+            db.Reservaciones.Remove(reserv);
+            TempData["Accion"] = "Eliminado";
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         // GET: Reservacions/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -173,15 +184,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public ActionResult EliminarReservacion(int id)
-        {
-            Reservacion reserv = db.Reservaciones.Find(id);
-            db.Reservaciones.Remove(reserv);
-            TempData["Accion"] = "Eliminado";
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

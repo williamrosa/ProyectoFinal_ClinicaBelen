@@ -4,102 +4,143 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/datatables.min.css" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoPago.EstadoDePago)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoReservacion.EstadoDeCita)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medico.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paciente.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo_reservacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nota_reservacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_creado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_cita)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hora_cita)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sintomas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicamentos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th></th>
-    </tr>
+<input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+<div class="box box-primary" style="margin-top:20px;">
+    <div class="box-header">
+        <h4 class="box-title">Listado de Médicos</h4>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-success" name="btnCrear" id="btnCrear" onclick="Crear()">
+                <i class="fa fa-plus-square"></i> Crear Nuevo
+            </button>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstadoPago.EstadoDePago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstadoReservacion.EstadoDeCita)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medico.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paciente.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo_reservacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nota_reservacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_creado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_cita)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora_cita)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sintomas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medicamentos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Reservacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Reservacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Reservacion })
-        </td>
-    </tr>
-}
+    <div class="box-body">
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+        }
+        <table id="tableIndex" class="table table-bordered responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Medico</th>
+                    <th>Paciente</th>
+                    <th>Medicamentos</th>
+                    <th>Precio</th>
+                    <th>Fecha cita</th>
+                    <th>Fecha creado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<h4>@ViewBag.ex</h4>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script>
+    var Popup, dataTable;
+    $(document).ready(function () {
+        $.noConflict();
+        var table = $('tableIndex').DataTable();
+        table = $("#tableIndex").DataTable({
+            "ajax": {
+                "url": "/Reservacions/GetData",
+                "type": "GET",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "Titulo_reservacion" },
+                { "data": "Nombre_Completo" },
+                { "data": "Nombre_Completo_Paciente" },
+                { "data": "Medicamentos" },
+                {
+                    "data": "Precio",
+                    "render": function (Precio) {
+                        return '$' + Precio;
+                    }
+                },
+                {
+                    "data": "Fecha_cita",
+                    "render": function (jsonDate) {
+                        return moment(jsonDate).format('DD/MM/YYYY hh:mm:ss A');
+                    }
+                },
+                {
+                    "data": "Fecha_creado",
+                    "render": function (jsonDate) {
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                        return ("0" + date.getDate()).slice(-2) + '-' + month + '-' + date.getFullYear();
+                    }
+                },
+                {
+                    "data": "Id_Reservacion", "render": function (data) {
+                    return "<a class='btn btn-default btn-sm' href='@Url.Action("Edit", "Reservacions")/" + data + "'><i class='fa fa-pencil'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                },
+                {
+                    "data": "Id_Reservacion", "render": function (data) {
+                    return "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                    }
+            ],
+            "language": {
+                "url": "@Url.Content("~/Scripts/datatable.es-ES.json")"
+                 }
+        });
+    });
 
-</table>
+
+</script>
+<script>
+    $(document).ready(function () {
+        if ($("#txtOcultar").val() == "Insertado") {
+            swal("Registro Guardado!", "Datos  guardados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Editado") {
+            swal("Registro Editado!", "Datos editados correctamente!", "success");
+        }
+        else if ($("#txtOcultar").val() == "Eliminado") {
+            swal("Registro Eliminado!", "Datos  Eliminados correctamente!", "success");
+        }
+    });
+
+
+    function Crear() {
+        document.getElementById("btnCrear")
+        location.href = "/Reservacions/Create";
+    }
+
+    function Delete(id) {
+        var url;
+        swal({
+            title: "Estas seguro?",
+            text: "Si lo eliminas, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    url = '@Url.Action("EliminarReservacion", "Reservacions")/' + id,
+                    window.location.href = url;
+                    dataTable.ajax.reload();
+                } else {
+                    swal("Cancelado!");
+                }
+            });
+    }
+</script>

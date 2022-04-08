@@ -44,24 +44,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha_creado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_creado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_creado, "", new { @class = "text-danger" })
+                <input type="text" id="Fecha_creado" name="Fecha_creado" value="@ViewBag.FechaCreado" class="form-control" required />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha_cita, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_cita, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_cita, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hora_cita, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hora_cita, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hora_cita, "", new { @class = "text-danger" })
+                <input type="text" class="form-control" id="Fecha_cita" name="Fecha_cita" value="@ViewBag.FechaCita">
             </div>
         </div>
 

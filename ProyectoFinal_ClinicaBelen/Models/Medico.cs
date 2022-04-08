@@ -19,6 +19,8 @@ namespace ProyectoFinal_ClinicaBelen.Models
         [StringLength(30, ErrorMessage = "El campo {0} necesita entre {2} y {1} caracteres", MinimumLength = 4)]
         public string Apellidos { get; set; }
 
+        public string Nombre_CompletoM { get { return string.Format("{0} {1}", Nombres, Apellidos); } }
+
         [Display(Name = "Género")]
         [StringLength(1, ErrorMessage = "El campo {0} necesita un solo caracter(M/F)", MinimumLength = 1)]
         public string Genero { get; set; }
