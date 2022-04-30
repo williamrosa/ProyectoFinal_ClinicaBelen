@@ -4,110 +4,124 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Detalle de reservacion</h2>
+<link href="~/Content/EstiloDetalles.css" rel="stylesheet" />
+<style>
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EstadoPago.EstadoDePago)
-        </dt>
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.EstadoPago.EstadoDePago)
-        </dd>
+        ul.timeline > li {
+            margin: 1px 0;
+            padding-left: 60px;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EstadoReservacion.EstadoDeCita)
-        </dt>
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #22c0e8;
+                left: 20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+</style>
 
-        <dd>
-            @Html.DisplayFor(model => model.EstadoReservacion.EstadoDeCita)
-        </dd>
+<div class="container">
+    <br />
+    <div class="timeline">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Medico.Nombres)
-        </dt>
+        <article class="panel panel-primary">
 
-        <dd>
-            @Html.DisplayFor(model => model.Medico.Nombres)
-        </dd>
+            <div class="panel-heading icon">
+                <i class="glyphicon glyphicon-info-sign"></i>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Paciente.Nombres)
-        </dt>
+            <div class="panel-heading">
+                <h2 class="panel-title">Detalles Pacientes</h2>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Paciente.Nombres)
-        </dd>
+            <div class="panel-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo_reservacion)
-        </dt>
+                <div>
+                    <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo_reservacion)
-        </dd>
+                        <ul class="timeline">
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.EstadoPago.EstadoDePago)</a>
+                                <p>@Html.DisplayFor(model => model.EstadoPago.EstadoDePago)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.EstadoReservacion.EstadoDeCita)</a>
+                                <p>@Html.DisplayFor(model => model.EstadoReservacion.EstadoDeCita)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Medico.Nombres)</a>
+                                <p>@Html.DisplayFor(model => model.Medico.Nombres)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Paciente.Nombres)</a>
+                                <p>@Html.DisplayFor(model => model.Paciente.Nombres)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Titulo_reservacion)</a>
+                                <p>@Html.DisplayFor(model => model.Titulo_reservacion)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Nota_reservacion)</a>
+                                <p>@Html.DisplayFor(model => model.Nota_reservacion)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Direccion)</a>
+                                <p>@Html.DisplayFor(model => model.Direccion)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Fecha_creado)</a>
+                                <p>@Html.DisplayFor(model => model.Fecha_creado)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Fecha_cita)</a>
+                                <p>@Html.DisplayFor(model => model.Fecha_cita)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Sintomas)</a>
+                                <p>@Html.DisplayFor(model => model.Sintomas)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Medicamentos)</a>
+                                <p>@Html.DisplayFor(model => model.Medicamentos)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Precio)</a>
+                                <p>@Html.DisplayFor(model => model.Precio)</p>
+                            </li>                            
+                        </ul>
+                    </dl>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nota_reservacion)
-        </dt>
+            <div class="panel-footer">
+                <p>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Reservacion }) |
+                    @Html.ActionLink("Regresar", "Index")
 
-        <dd>
-            @Html.DisplayFor(model => model.Nota_reservacion)
-        </dd>
+                </p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_creado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_creado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_cita)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_cita)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sintomas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sintomas)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Medicamentos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Medicamentos)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-
-    </dl>
+        </article>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Reservacion }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
