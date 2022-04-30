@@ -4,7 +4,42 @@
     ViewBag.Title = "Details";
 }
 <link href="~/Content/EstiloDetalles.css" rel="stylesheet" />
-<link href="~/Content/EstiloDetalles2.css" rel="stylesheet" />
+<!--<link href="~/Content/EstiloDetalles2.css" rel="stylesheet" />-->
+<style>
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline > li {
+            margin: 60px 0;
+            padding-left: 60px;
+        }
+
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #22c0e8;
+                left: 20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+</style>
 <div class="container">
     <br />
     <!-- Page header -->
@@ -41,98 +76,148 @@
             <div class="panel-body">
 
                 <div>                    
-                    <dl> <!--class="dl-horizontal"--> 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.CategoriaMedico.NombreCategoria)
-                        </dt>
+                    <dl class="dl-horizontal">
 
-                        <dd>
-                            @Html.DisplayFor(model => model.CategoriaMedico.NombreCategoria)
-                        </dd>
+                        <ul class="timeline">
+                            <li>
+                                <a  href="#">@Html.DisplayNameFor(model => model.CategoriaMedico.NombreCategoria)</a>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Nombres)
-                        </dt>
+                                <p>@Html.DisplayFor(model => model.CategoriaMedico.NombreCategoria)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Nombres)</a>
+                                <p>@Html.DisplayFor(model => model.Nombres)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Apellidos)</a>
+                                <p>@Html.DisplayFor(model => model.Apellidos)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Genero)</a>
+                                <p>@Html.DisplayFor(model => model.Genero)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.FechaNacimiento)</a>
+                                <p>@Html.DisplayFor(model => model.FechaNacimiento)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Email)</a>
+                                <p>@Html.DisplayFor(model => model.Email)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Direccion)</a>
+                                <p>@Html.DisplayFor(model => model.Direccion)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Movil)</a>
+                                <p>@Html.DisplayFor(model => model.Movil)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Fecha_Creacion)</a>
+                                <p>@Html.DisplayFor(model => model.Fecha_Creacion)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.Numero_documento)</a>
+                                <p>@Html.DisplayFor(model => model.Numero_documento)</p>
+                            </li>
+                            <li>
+                                <a href="#">@Html.DisplayNameFor(model => model.IsActive)</a>
+                                <p>@Html.DisplayFor(model => model.IsActive)</p>
+                            </li>
+                        </ul>
+                        <!--
+    <dt>
+        @Html.DisplayNameFor(model => model.CategoriaMedico.NombreCategoria)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Nombres)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.CategoriaMedico.NombreCategoria)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Apellidos)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Nombres)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Apellidos)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Nombres)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Genero)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Apellidos)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Genero)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Apellidos)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.FechaNacimiento)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Genero)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.FechaNacimiento)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Genero)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Email)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.FechaNacimiento)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Direccion)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Direccion)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Email)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Movil)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Direccion)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Movil)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Direccion)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Fecha_Creacion)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Movil)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Fecha_Creacion)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Movil)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Numero_documento)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Fecha_Creacion)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.Numero_documento)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Fecha_Creacion)
+    </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IsActive)
-                        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Numero_documento)
+    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.IsActive)
-                        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Numero_documento)
+    </dd>
 
+    <dt>
+        @Html.DisplayNameFor(model => model.IsActive)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.IsActive)
+    </dd>
+        -->
                     </dl>
                 </div>
             </div>
+
             <!-- /Body -->
             <!-- Footer -->
             <div class="panel-footer">
@@ -144,6 +229,7 @@
             <!-- /Footer -->
 
         </article>
+
         
         <!-- /Panel -->
 
