@@ -32,6 +32,7 @@
                     <th>DUI</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
         </table>
@@ -62,6 +63,14 @@
                 {
                     "data": "Id_Medico", "render": function (data) {
                     return "<a class='btn btn-default btn-sm' href='@Url.Action("Edit", "Medicos")/" + data + "'><i class='fa fa-pencil'></i></a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"30px"
+                },
+                {
+                    "data": "Id_Medico", "render": function (data) {
+                    return "<a class='btn btn-primary btn-sm' href='@Url.Action("Details", "Medicos")/" + data + "'><i class='fa fa-eye'></i></a>";
                     },
                         "orderable": false,
                         "searchable":false,

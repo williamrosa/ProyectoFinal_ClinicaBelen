@@ -3,104 +3,158 @@
 @{
     ViewBag.Title = "Details";
 }
+<link href="~/Content/EstiloDetalles.css" rel="stylesheet" />
+<link href="~/Content/EstiloDetalles2.css" rel="stylesheet" />
+<div class="container">
+    <br />
+    <!-- Page header -->
+    
+    <!-- /Page header -->
+    <!-- Timeline -->
+    <div class="timeline">
 
-<h2>Details</h2>
+        <!-- Line component -->
+        <div class="line text-muted"></div>
 
-<div>
-    <h4>Medico</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoriaMedico.NombreCategoria)
-        </dt>
+        <!-- Separator -->
+        <div class="separator text-muted">
+            
+        </div>
+        <!-- /Separator -->
+        <!-- Panel -->
+        
+        <!-- /Panel -->
+        <!-- Panel -->
+        <article class="panel panel-primary">
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoriaMedico.NombreCategoria)
-        </dd>
+            <!-- Icon -->
+            <div class="panel-heading icon">
+                <i class="glyphicon glyphicon-info-sign"></i>
+            </div>
+            <!-- /Icon -->
+            <!-- Heading -->
+            <div class="panel-heading">
+                <h2 class="panel-title">Detalles Medicos</h2>
+            </div>
+            <!-- /Heading -->
+            <!-- Body -->
+            <div class="panel-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </dt>
+                <div>                    
+                    <dl> <!--class="dl-horizontal"--> 
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CategoriaMedico.NombreCategoria)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombres)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.CategoriaMedico.NombreCategoria)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nombres)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Apellidos)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Nombres)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genero)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Apellidos)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genero)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Apellidos)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Genero)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Genero)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FechaNacimiento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.FechaNacimiento)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Movil)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Direccion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Movil)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Direccion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Creacion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Movil)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Creacion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Movil)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero_documento)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha_Creacion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numero_documento)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha_Creacion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Numero_documento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Numero_documento)
+                        </dd>
 
-    </dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.IsActive)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+            <!-- /Body -->
+            <!-- Footer -->
+            <div class="panel-footer">
+                <p>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Medico }) |
+                    @Html.ActionLink("Regresar", "Index")
+                </p>
+            </div>
+            <!-- /Footer -->
+
+        </article>
+        
+        <!-- /Panel -->
+
+    </div>
+    <!-- /Timeline -->
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Medico }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+
