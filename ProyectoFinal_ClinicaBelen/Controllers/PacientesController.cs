@@ -18,6 +18,22 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         // GET: Pacientes
         public ActionResult Index()
         {
+            if (TempData["Accion"] != null)
+            {
+                var accion = Convert.ToString(TempData["Accion"]);
+                if (accion == "Insertado")
+                {
+                    ViewBag.Accion = "Insertado";
+                }
+                else if (accion == "Editado")
+                {
+                    ViewBag.Accion = "Editado";
+                }
+                else if (accion == "Eliminado")
+                {
+                    ViewBag.Accion = "Eliminado";
+                }
+            }
             return View(db.Pacientes.ToList());
         }
 
@@ -61,6 +77,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             {
                 db.Pacientes.Add(paciente);
                 db.SaveChanges();
+                TempData["Accion"] = "Insertado";
                 return RedirectToAction("Index");
             }
 
@@ -96,6 +113,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             {
                 db.Entry(paciente).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Accion"] = "Editado";
                 return RedirectToAction("Index");
             }
             return View(paciente);
@@ -123,6 +141,14 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
         {
             Paciente paciente = db.Pacientes.Find(id);
             db.Pacientes.Remove(paciente);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult EliminarPaciente(int id)
+        {
+            Paciente pac = db.Pacientes.Find(id);
+            db.Pacientes.Remove(pac);
+            TempData["Accion"] = "Eliminado";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

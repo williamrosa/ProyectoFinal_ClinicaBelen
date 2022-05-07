@@ -40,7 +40,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                     string body = "<body>" +
                         "<h1>Clinica Belen</h1>" +
                         "<h4>Información Básica del paciente:</h4>" +
-                        "<span>" + "Nombre : " + correo.Nombres + "<br> Apellido : " + correo.Apellidos + "<br> DUI: " + correo.Numero_documento + "<br> Movil: " + correo.Movil
+                        "<span>" + "Nombre : " + correo.Nombres + "<br> Apellido : " + correo.Apellidos + "<br> DUI: " + correo.Numero_documento + "<br> Email: " + correo.Email + "<br> Movil: " + correo.Movil
                         + "</span>" +
                         "</body>";
                     //Se adjunta en el mensaje los datos dentro de nuestro campo.
@@ -72,7 +72,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                     smtp.EnableSsl = true;
                     smtp.UseDefaultCredentials = true;
                     string cuentaCorreo = "r3yes.mauricio@gmail.com";
-                    string passwordCorreo = "Patricia9926.";
+                    string passwordCorreo = "P4trici49926.";
                     smtp.Credentials = new System.Net.NetworkCredential(cuentaCorreo, passwordCorreo);
 
                     smtp.Send(email);
