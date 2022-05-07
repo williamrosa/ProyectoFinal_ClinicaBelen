@@ -1,31 +1,184 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿    <!-- Estilos -->
+    <link href="~/Content/Inicio/style.css" rel="stylesheet" />
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    
+    <link href="~/Content/Inicio/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/Inicio/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="~/Content/Inicio/glightbox.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900" rel="stylesheet">
+    <style>
+        .call-to-action {
+            background: linear-gradient(rgba(1, 41, 42, 0.5), rgba(7, 56, 57, 0.5)), url("https://cdn.aarp.net/content/dam/aarp/health/conditions_treatments/2020/08/1140-telehealth-get-started-esp.jpg") fixed center center;
+            background-size: cover;
+            padding: 60px 0;
+        }
+    </style>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div class="hero-container">
+            <h1>Bienvenido a Clinica Belen</h1>
+            <h2>Servicio de citas online</h2>
+            <!--<a href="#about" class="btn-get-started scrollto">Get Started</a>-->
+        </div>
+    </section><!-- #hero -->
+
+    <main id="main">
+       
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services section-bg">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>“Tu mejor opcion cuando hablamos de salud”</h2>
+                    <p>
+                        Contamos con especialidades en las diferentes áreas Médicas, Quirúrgicas, Odontológicas, Psicología y Nutrición; para que todos nuestros pacientes encuentren en un solo lugar todos los servicios médicos que necesita, con especialistas certificados, reconocidos y con mucha experiencia que están en constante actualización médica.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 icon-box">
+                        <div class="icon"><i class="glyphicon glyphicon-heart"></i></div>
+                        <h4 class="title"><a href="">TU SALUD ES PRIMERO</a></h4>
+                        <p class="description">
+                            Los nuevos tiempos y retos que se nos presentan, nos fortalecen aún más en aquello que siempre hemos hecho: cuidarte
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box">
+                        <div class="icon"><i class="glyphicon glyphicon-plus"></i></div>
+                        <h4 class="title"><a href="">LISTO PARA EMERGENCIAS</a></h4>
+                        <p class="description">Estamos siempre alertas y preparados para afrontar las emergencias que se nos puedan presentar</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box">
+                        <div class="icon"><i class="glyphicon glyphicon-user"></i></div>
+                        <h4 class="title"><a href="">PERSONAL CAPACITADO</a></h4>
+                        <p class="description">Somos un equipo humano que trabaja para brindarte la atención que mereces</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+        <!-- ======= Call To Action Section ======= -->
+        <section class="call-to-action">
+            <div class="container">
+
+                <div class="text-center">
+                    <h3>Servicio de citas online</h3>
+                    <p>En Clinica Belen ofrecemos el servicio de citas online para nuestros pacientes</p>
+                    <a class="cta-btn" href="@Url.Action("EnviarCorreo", "Correos")">Realizar Cita</a>                    
+
+                </div>
+
+            </div>
+        </section><!-- End Call To Action Section -->
+        <!-- ======= Our Team Section ======= -->
+        <section id="team" class="team">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Algunas de las ventajas que tiene nuestro servicio de citas online son :</h2>
+                    
+                </div>
+
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="member">
+                            <img src="https://debmedia.com/blog/wp-content/uploads/2020/04/20-04-F-Atenci%C3%B3n-personalizada-al-cliente-que-no-puede-estar-en-sucursal-pre.jpg" alt="">
+                            <h4>Puede Ayudarte a Brindar una Atención Personalizada</h4>
+                            
+                            <p>
+                                Conocer y saber qué necesita tu cliente es un aspecto clave del proceso ya que mejora los tiempos y la calidad de atención.
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="member">
+                            <img src="https://directivosygerentes.es/wp-content/uploads/2020/06/la-tecnologia-escalable-y-flexible-ha-sido-y-seguira-siendo-clave-en-el-ecosistema-pyme.jpg" alt="">
+                            <h4>Escalabilidad y Flexibilidad del Sistema de Citas Online</h4>
+                            <span></span>
+                            <p>
+                                La implementación de la programación de autoservicio es rápida y sin muchos requerimientos.
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="member">
+                            <img src="https://x6i2p6h3.rocketcdn.me/wp-content/uploads/2018/07/optimizacion-de-recursos.jpg" alt="">
+                            <h4>Te Permite Optimizar Recursos</h4>
+                            <span></span>
+                            <p>
+                                Sabemos que el tiempo es muy importante asi que lo tomamos en cuenta con nuestros servicios.
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Our Team Section -->
+
+        <!-- ======= Map Section ======= -->
+        <section class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31057.627892174794!2d-87.86624923896159!3d13.337614646498237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f7ab80df92c2f17%3A0xf0323c6cff3656b!2zTGEgVW5pw7Nu!5e0!3m2!1ses-419!2ssv!4v1651884094765!5m2!1ses-419!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section><!-- End Map Section -->
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Clinica Belen</span></strong>. Todos los derechos reservados
+            </div>
+            <div class="credits">
+                
+            </div>
+        </div>
+    </footer><!-- End #footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+
+    <script src="~/Scripts/Inicio/JavaScriptInicio.js"></script>
+    <script src="~/Scripts/Inicio/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Inicio/glightbox.min.js"></script>
+    <script src="~/Scripts/Inicio/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/Inicio/swiper-bundle.min.js"></script>
+
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
