@@ -11,6 +11,7 @@ using ProyectoFinal_ClinicaBelen.Models;
 
 namespace ProyectoFinal_ClinicaBelen.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ReservacionsController : Controller
     {
         private ClinicaContext db = new ClinicaContext();

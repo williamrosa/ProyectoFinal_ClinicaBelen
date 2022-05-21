@@ -79,6 +79,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //TempData["UserName"] = model.Email;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

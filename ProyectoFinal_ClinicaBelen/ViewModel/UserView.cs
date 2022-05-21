@@ -15,6 +15,9 @@ namespace ProyectoFinal_ClinicaBelen.ViewModel
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        //Variable temporal para almacenar el rol que el usuario escoja
+        public RoleView Role { get; set; }
+
         public List<RoleView> Roles { get; set; }
     }
 }

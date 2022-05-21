@@ -3,5 +3,66 @@
     ViewBag.Title = "Roles";
 }
 
-<h2>Roles for user: @Model.UserName</h2>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/datatables.min.css" />
 
+<input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+
+<div class="box box-primary" style="margin-top:20px;">
+    <div class="box-header">
+        <h4 class="box-title">Roles for user: @Model.UserName</h4>
+        <div class="box-tools pull-right">
+            @Html.ActionLink("Agregar rol", "AddRole", new { UserID = Model.UserID }, new { @class = "btn btn-succes" })
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+        </div>
+    </div>
+
+    <div class="box-body">
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" id="txtOcultar" value="@ViewBag.Accion" />
+        }
+    <table id="tableIndex" class="table table-striped table-bordered responsive" style="width:100%">
+        @for (int i = 0; i < Model.Roles.Count; i++)
+        {
+            <thead>
+                <tr>
+                    <th>@Html.DisplayFor(modelItem => Model.Roles[i].Name)</th>
+                    <th>@Html.ActionLink("Delete", "Delete", new {UserID = Model.UserID, roleID =Model.Roles[i].RoleID})</th>
+                </tr>
+            </thead>
+        }
+
+    </table>
+    </div>
+</div>
+<h4>@ViewBag.ex</h4>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+<script>
+     function Crear() {
+        document.getElementById("btnCrear")
+        location.href = "/Users/AddRole";
+    }
+
+    function Delete(id) {
+        var url;
+        swal({
+            title: "Estas seguro?",
+            text: "Si lo eliminas, no podrás recuperarlo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    url = '@Url.Action("EliminarReservacion", "EstadoReservaciones")/' + id,
+                    window.location.href = url;
+                    dataTable.ajax.reload();
+                } else {
+                    swal("Cancelado!");
+                }
+            });
+    }
+</script>

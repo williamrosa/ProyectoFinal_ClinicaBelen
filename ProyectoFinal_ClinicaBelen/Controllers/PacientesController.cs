@@ -11,11 +11,14 @@ using ProyectoFinal_ClinicaBelen.Models;
 
 namespace ProyectoFinal_ClinicaBelen.Controllers
 {
+    
     public class PacientesController : Controller
     {
+
         private ClinicaContext db = new ClinicaContext();
 
         // GET: Pacientes
+        [Authorize(Roles = "Administrador, Index")]
         public ActionResult Index()
         {
             if (TempData["Accion"] != null)
@@ -45,6 +48,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                            select s;
             return View(buscarxN.ToList());
         }
+        [Authorize(Roles = "Administrador")]
         // GET: Pacientes/Details/5
         public ActionResult Details(int? id)
         {
@@ -59,6 +63,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             }
             return View(paciente);
         }
+        [Authorize(Roles = "Administrador")]
 
         // GET: Pacientes/Create
         public ActionResult Create()
@@ -83,7 +88,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
 
             return View(paciente);
         }
-
+        [Authorize(Roles = "Administrador")]
         // GET: Pacientes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -144,6 +149,7 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Administrador")]
         public ActionResult EliminarPaciente(int id)
         {
             Paciente pac = db.Pacientes.Find(id);
