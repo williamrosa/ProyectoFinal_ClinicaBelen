@@ -76,11 +76,11 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                     smtp.Credentials = new System.Net.NetworkCredential(cuentaCorreo, passwordCorreo);
 
                     smtp.Send(email);
-                    ViewBag.Mensaje = "Enviado";
+                    ViewBag.Mensaje = AlertaEstadoEnvio("<strong>Felicidades!</strong> Su correo fue enviado correctamente!", "alert-success");
                 }
                 catch (ArgumentException e)
                 {
-                    ViewBag.Mensaje = "Mensaje no enviado";
+                    ViewBag.Mensaje = AlertaEstadoEnvio("<strong>Error!</strong> Su correo no fue enviado intentelo nuevamente!", "alert-danger");
                 }
                 //db.Correos.Add(correo);
                 //db.SaveChanges();
@@ -97,6 +97,15 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private string AlertaEstadoEnvio(string mensaje, string clase) {
+            string CuerpoMensaje = "";
+            CuerpoMensaje += "<div class='alert "+clase+" alert-dismissible' role='alert'>";
+            CuerpoMensaje += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+            CuerpoMensaje += mensaje;
+            CuerpoMensaje += "</div>";
+            return CuerpoMensaje;
         }
     }
 }

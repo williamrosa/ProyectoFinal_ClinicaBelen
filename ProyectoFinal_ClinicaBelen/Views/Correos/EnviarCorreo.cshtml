@@ -4,68 +4,71 @@
     ViewBag.Title = "EnviarCorreo";
 }
 
-<h2>EnviarCorreo</h2>
+<style>
+    .mb {
+        margin-bottom: 4px;
+    }
+</style>
+
+<h3 class="text-center">Realiza tus resevaciones através de correo electronico</h3>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Correo</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-lg-offset-3">
+        <div class="panel">
+            <div class="panel-heading bg-aqua">
+                <h4>Correo</h4>
+            </div>
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Numero_documento, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Numero_documento, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Numero_documento, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    @Html.LabelFor(model => model.Numero_documento, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Numero_documento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Numero_documento, "", new { @class = "text-danger" })
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Movil, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Movil, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Movil, "", new { @class = "text-danger" })
+                <div class="col-lg-6 col-md-6 col-sm-6 mb">
+                    @Html.LabelFor(model => model.Movil, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Movil, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Movil, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Enviar Correo" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Index", "", new { @class= "btn btn-danger"})
+            </div>
         </div>
-    </div>
-    <h3 style="color:blue">@ViewBag.Mensaje</h3>
-    @*<div class="alert alert-success hidden">@ViewBag.Mensaje</div>*@
-
-    <div class="form-group  text-center">
-        <input type="submit" value="Enviar Correo" class="btn btn-primary" />
     </div>
 </div>
+
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-lg-offset-3">
+    @Html.Raw(ViewBag.Mensaje)
+</div>
+
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
