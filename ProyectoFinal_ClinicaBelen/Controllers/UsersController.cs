@@ -300,5 +300,23 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult DeleteUser(string UserID)
+        {
+            if (string.IsNullOrEmpty(UserID))
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var users = userManager.Users.ToList();
+
+            var user = users.Find(u => u.Id == UserID);
+
+            db.Users.Remove(user);
+            TempData["Accion"] = "Eliminado";
+            db.SaveChanges();
+
+            return Redirect("Index");
+        }
     }
 }

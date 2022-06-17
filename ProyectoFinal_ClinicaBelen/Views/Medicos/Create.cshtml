@@ -2,111 +2,92 @@
 
 @{ ViewBag.Title = "Nuevo Médico"; }
 
-
+&nbsp;
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Formulario para el registro de médicos</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese el nombre del médico" } })
-                @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
-            </div>
+    <div class="box box-primary">
+        <div class="box-header">
+            <h4 class="box-title">Crear Médico</h4>
         </div>
+        <div class="box-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el apellido del médico" } })
-                @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.Nombres, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese el nombre del médico" } })
+                    @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Genero, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el genero m o f" } })
-                @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.Apellidos, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Apellidos, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el apellido del médico" } })
+                    @Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha de nacimiento</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Genero, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el genero m o f" } })
+                    @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Correo</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el email de médico" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Fecha de nacimiento</label>
+                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Dirección</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese la dirección completa del médico" } })
-                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Correo</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingresa el email de médico" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Teléfono</label>
-            <div class="col-md-10">
-                <input type="text" name="Movil" value="" id="Movil" class="form-control" maxlength="9" />
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Dirección</label>
+                    @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese la dirección completa del médico" } })
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha de creación</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_Creacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_Creacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Teléfono</label>
+                    <input type="text" name="Movil" value="" id="Movil" placeholder="Ingrese el numero de telefono" class="form-control" maxlength="9" />
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-1"></div>
-            <div class="col-md-9">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Fecha de creación</label>
+                    @Html.EditorFor(model => model.Fecha_Creacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fecha_Creacion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        Marcar: &emsp; &emsp;
+                        @Html.EditorFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">DUI</label>
+                    <input type="text" name="Numero_documento" value="" placeholder="Numero de DUI" id="Numero_documento" class="form-control" />
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-xs-12 mb-3">
+                    <label class="control-label">Categoría médico</label>
+                    @Html.DropDownList("Id_Categoria", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Categoria, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">DUI</label>
-            <div class="col-md-10">
-                <input type="text" name="Numero_documento" value="" id="Numero_documento" class="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Categoría médico</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Id_Categoria", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id_Categoria, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="box-footer">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>
-    }
+}
 
 <div>
     @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "glyphicon glyphicon-arrow-left btn btn-warning" })
@@ -116,7 +97,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
             $('#Movil').inputmask("mask", { "mask": "9999-9999" });
             $('#Numero_documento').inputmask("mask", { "mask": "99999999-9" });
         });</script>

@@ -8,30 +8,28 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="box box-primary" style="margin-top:20px;">
-        <div class="box-header">
-            <h4 class="box-title">Editar Categorías</h4>
-        </div>
+<div class="box box-primary mt">
+    <div class="box-header">
+        <h4 class="box-title">Editar Categoría: @Model.NombreCategoria</h4>
+    </div>
 
-        <div class="box-body">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id_Categoria)
+    <div class="box-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id_Categoria)
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.NombreCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NombreCategoria, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NombreCategoria, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <hr />
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Editar" class="btn btn-primary" />
-                </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                @Html.LabelFor(model => model.NombreCategoria, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.NombreCategoria, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreCategoria, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="box-footer">
+        <input type="submit" value="Editar" class="btn btn-primary" />
+    </div>
+</div>
 }
 
 <div>

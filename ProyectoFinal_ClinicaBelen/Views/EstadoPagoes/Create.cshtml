@@ -4,35 +4,36 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>EstadoPago</h4>
-        <hr />
+
+    <div class="box box-primary mt">
+
+        <div class="box-header">
+            <h4>Crear Estado de Pago</h4>
+        </div>
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.EstadoDePago, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EstadoDePago, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EstadoDePago, "", new { @class = "text-danger" })
+
+        <div class="box-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.EstadoDePago, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.EstadoDePago, new { htmlAttributes = new { @class = "form-control", @placeholder="Ingresa el estado de pago" } })
+                    @Html.ValidationMessageFor(model => model.EstadoDePago, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
+        <div class="box-footer">
+            <input type="submit" value="Crear" class="btn btn-primary" />
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="mt">
+    @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "glyphicon glyphicon-arrow-left btn btn-warning" })
 </div>
 
 @section Scripts {
