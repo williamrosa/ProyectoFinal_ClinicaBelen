@@ -22,5 +22,7 @@ namespace ProyectoFinal_ClinicaBelen.Context
         public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.EstadoReservacion> EstadoReservaciones { get; set; }
 
         public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Reservacion> Reservaciones { get; set; }
+
+        public System.Data.Entity.DbSet<ProyectoFinal_ClinicaBelen.Models.Recetas> Recetas { get; set; }
     }
 }

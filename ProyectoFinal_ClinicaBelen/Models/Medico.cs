@@ -63,5 +63,7 @@ namespace ProyectoFinal_ClinicaBelen.Models
 
         //relacion a la tabla reservaciones
         public ICollection<Reservacion> Reservaciones { get; set; }
+
+        public ICollection<Recetas> Recetas { get; set; }
     }
 }

@@ -1,0 +1,61 @@
+﻿@model ProyectoFinal_ClinicaBelen.Models.Recetas
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="box box-primary" style="margin-top:20px;">
+                <div class="box-header">
+                    <h4 class="box-title">Detalle de receta</h4>
+                    <div class="box-tools pull-right">
+                        <img src="~/img/clinicaBelen.png" height="45" width="150" />
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <td class="text-right"><b> Nombre Medico:</b></td>
+                                <td class="text-left">@Html.DisplayFor(model => model.oMedico.Nombre_CompletoM)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b> Nombre Paciente:</b></td>
+                                <td>@Html.DisplayFor(model => model.oPaciente.Nombre_Completo)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b> Nombre receta:</b></td>
+                                <td>@Html.DisplayFor(model => model.Nombre)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Diagnostico:</b></td>
+                                <td>@Html.DisplayFor(model => model.PrescripcionMedica)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Dosis:</b></td>
+                                <td>@Html.DisplayFor(model => model.Dosis)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><b>Medicamentos recetados:</b></td>
+                                <td>@Html.DisplayFor(model => model.MedicamentosRecetados)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                @Html.ActionLink("Descargar PDF", "Print", new { id = Model.IdRecetas }, new { @class = "btn btn-primary form-control", @target = "_blank" })
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <div class="mt">
+        @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "glyphicon glyphicon-arrow-left btn btn-warning" })
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/datatables.min.js"></script>
+
