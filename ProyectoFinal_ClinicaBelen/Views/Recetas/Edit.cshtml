@@ -4,20 +4,62 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Recetas</h4>
-        <hr />
+    <br />
+    <div class="box box-primary">
+        <div class="box-header">
+            <h4>Editar Receta de: @Model.Nombre </h4>
+        </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdRecetas)
 
-        <div class="form-group">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    <label class="control-label">Diagnostico</label>
+                    @Html.EditorFor(model => model.PrescripcionMedica, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PrescripcionMedica, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    <label class="control-label">Medicamentos recetados</label>
+                    @Html.EditorFor(model => model.MedicamentosRecetados, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MedicamentosRecetados, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    @Html.LabelFor(model => model.Dosis, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Dosis, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Dosis, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    <label class="control-label">Paciente</label>
+                    @Html.DropDownList("Id_Paciente", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Paciente, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 mb-3">
+                    <label class="control-label">Medico</label>
+                    @Html.DropDownList("Id_Medico", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Medico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <input type="submit" value="Actualizar" class=" btn btn-primary" />
+        </div>
+
+        <div>
+            @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "glyphicon glyphicon-arrow-left btn btn-warning" })
+        </div>
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
@@ -69,13 +111,13 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
-        </div>
+        </div>*@
     </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

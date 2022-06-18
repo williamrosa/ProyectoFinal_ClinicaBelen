@@ -70,6 +70,14 @@
                  }
         });
     });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ($("#txtOcultar").val() == "Eliminado") {
+            swal("Registro Eliminado!", "Datos  Eliminados correctamente!", "success");
+        }
+    });
 
     function Delete(id) {
         var url;

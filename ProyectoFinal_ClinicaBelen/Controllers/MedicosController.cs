@@ -167,6 +167,14 @@ namespace ProyectoFinal_ClinicaBelen.Controllers
             TempData["Accion"] = "Eliminado";
             return RedirectToAction("Index");
         }
+        public ActionResult EliminarMedico(int id)
+        {
+            Medico pac = db.Medicos.Find(id);
+            db.Medicos.Remove(pac);
+            TempData["Accion"] = "Eliminado";
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
